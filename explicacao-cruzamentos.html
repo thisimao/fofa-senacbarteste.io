@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOFA – Cruzamentos Estratégicos</title>
+
+<link rel="icon" href="fofa-logo.png">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:"Segoe UI", Arial, sans-serif;
+  background:#f4f6f9;
+  color:#2c2c2c;
+}
+
+/* HEADER */
+header{
+  background:linear-gradient(90deg,#1f4fd8,#1639a5);
+  color:#fff;
+  padding:25px;
+  display:flex;
+  align-items:center;
+  gap:25px;
+  flex-wrap:wrap;
+}
+
+header img{height:90px}
+
+header h1{
+  margin:0;
+  font-size:28px;
+}
+
+header p{
+  margin:6px 0 0;
+  opacity:.9;
+}
+
+/* CONTEÚDO */
+section{
+  max-width:1150px;
+  margin:auto;
+  padding:30px 25px;
+}
+
+h2{
+  margin-top:0;
+  color:#1f4fd8;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;
+}
+
+/* CARD */
+.card{
+  background:#fff;
+  border-radius:16px;
+  padding:22px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  position:relative;
+}
+
+.card::before{
+  content:"";
+  height:6px;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  border-radius:16px 16px 0 0;
+}
+
+.card.af::before{background:#1f4fd8;}
+.card.rv::before{background:#f26c2a;}
+.card.df::before{background:#f4b41a;}
+.card.ct::before{background:#e53935;}
+
+.card h3{
+  margin-top:10px;
+  margin-bottom:12px;
+  font-size:18px;
+}
+
+.card p{
+  margin:8px 0;
+  line-height:1.5;
+}
+
+.card strong{
+  color:#1f4fd8;
+}
+
+/* BOTÃO */
+.botao-area{
+  text-align:center;
+  margin:40px 0 10px;
+}
+
+.botao-area button{
+  background:linear-gradient(90deg,#1f4fd8,#1639a5);
+  color:#fff;
+  border:none;
+  padding:16px 40px;
+  font-size:18px;
+  border-radius:40px;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(31,79,216,0.4);
+  transition:.3s;
+}
+
+.botao-area button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 30px rgba(31,79,216,0.5);
+}
+
+/* FOOTER */
+footer{
+  background:#1f4fd8;
+  color:#fff;
+  text-align:center;
+  padding:18px;
+  margin-top:40px;
+  font-size:14px;
+}
+
+@media(max-width:600px){
+  header{
+    flex-direction:column;
+    text-align:center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="fofa-logo.png">
+  <div>
+    <h1>Cruzamentos Estratégicos FOFA</h1>
+    <p>Transformando diagnóstico em ações práticas</p>
+  </div>
+</header>
+
+<section>
+  <h2>O que são os cruzamentos FOFA?</h2>
+  <p>
+    Após identificar <strong>Forças, Oportunidades, Fraquezas e Ameaças</strong>,
+    realizamos os cruzamentos para gerar <strong>estratégias concretas</strong>.
+    Cada cruzamento indica um tipo de decisão ou ação estratégica.
+  </p>
+</section>
+
+<section>
+  <div class="grid">
+
+    <div class="card af">
+      <h3>F+O – Alavancagem</h3>
+      <p><strong>Cruzamento:</strong> Forças + Oportunidades</p>
+      <p>
+        Estratégias que utilizam os pontos fortes para aproveitar oportunidades
+        e crescer de forma planejada.
+      </p>
+    </div>
+
+    <div class="card rv">
+      <h3>F+O – Reversão</h3>
+      <p><strong>Cruzamento:</strong> Fraquezas + Oportunidades</p>
+      <p>
+        Ações que buscam superar limitações internas para aproveitar
+        oportunidades existentes.
+      </p>
+    </div>
+
+    <div class="card df">
+      <h3>F+A – Defesa</h3>
+      <p><strong>Cruzamento:</strong> Forças + Ameaças</p>
+      <p>
+        Uso das forças para proteger a organização contra riscos
+        e situações externas desfavoráveis.
+      </p>
+    </div>
+
+    <div class="card ct">
+      <h3>F+A – Contenção</h3>
+      <p><strong>Cruzamento:</strong> Fraquezas + Ameaças</p>
+      <p>
+        Estratégias de prevenção e redução de danos quando há riscos
+        e fragilidades ao mesmo tempo.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section class="botao-area">
+  <button onclick="window.location.href='./cruzamentos.html'">
+    Fazer cruzamentos
+  </button>
+</section>
+
+<footer>
+  © FOFA – Análise Estratégica Educacional
+</footer>
+
+</body>
+</html>

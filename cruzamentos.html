@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOFA – Cruzamentos Estratégicos</title>
+
+<link rel="icon" href="fofa-logo.png">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:"Segoe UI", Arial, sans-serif;
+  background:#f4f6f9;
+  color:#2c2c2c;
+}
+
+/* HEADER */
+header{
+  background:linear-gradient(90deg,#1f4fd8,#1639a5);
+  color:#fff;
+  padding:25px;
+  display:flex;
+  align-items:center;
+  gap:25px;
+  flex-wrap:wrap;
+}
+
+header img{height:90px}
+
+header h1{
+  margin:0;
+  font-size:28px;
+}
+
+header p{
+  margin:5px 0 0;
+  opacity:.9;
+}
+
+/* CONTEÚDO */
+section{
+  max-width:1150px;
+  margin:auto;
+  padding:25px;
+}
+
+/* CAMPOS SUPERIORES */
+input, select{
+  width:100%;
+  padding:14px 16px;
+  margin-bottom:18px;
+  font-size:15px;
+  border-radius:10px;
+  border:1px solid #d6dbe5;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:22px;
+}
+
+/* CARD */
+.card{
+  background:#fff;
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
+
+.card h3{
+  margin-top:0;
+  font-size:18px;
+  text-align:center;
+}
+
+.card label{
+  font-weight:600;
+  font-size:14px;
+  display:block;
+  margin:12px 0 6px;
+}
+
+textarea{
+  width:100%;
+  min-height:70px;
+  resize:vertical;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid #d6dbe5;
+}
+
+/* BOTÃO */
+.botao{
+  background:linear-gradient(90deg,#f26c2a,#d9581e);
+  color:#fff;
+  border:none;
+  padding:16px 40px;
+  border-radius:40px;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  background:#1f4fd8;
+  color:#fff;
+  text-align:center;
+  padding:18px;
+  margin-top:40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="fofa-logo.png">
+  <div>
+    <h1>FOFA – Cruzamentos Estratégicos</h1>
+    <p>Planejamento estratégico a partir da matriz SWOT</p>
+  </div>
+</header>
+
+<section>
+  <input id="area" placeholder="Área / Curso">
+  <input id="docentes" placeholder="Docentes participantes">
+
+  <select id="eixo" onchange="trocarEixo()">
+    <option>Qualidade da Entrega Pedagógica</option>
+    <option>Relacionamento e Engajamento</option>
+    <option>Gestão e Inovação</option>
+    <option>Cultura de Inclusão, Diversidade e Equidade</option>
+  </select>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>FO – Forças + Oportunidades</h3>
+      <label>Cruzamento</label>
+      <textarea id="so_cruzamento"></textarea>
+      <label>Ação</label>
+      <textarea id="so_acao"></textarea>
+      <label>Meta</label>
+      <textarea id="so_meta"></textarea>
+    </div>
+
+    <div class="card">
+      <h3>DO – Fraquezas + Oportunidades</h3>
+      <label>Cruzamento</label>
+      <textarea id="wo_cruzamento"></textarea>
+      <label>Ação</label>
+      <textarea id="wo_acao"></textarea>
+      <label>Meta</label>
+      <textarea id="wo_meta"></textarea>
+    </div>
+
+    <div class="card">
+      <h3>FA – Forças + Ameaças</h3>
+      <label>Cruzamento</label>
+      <textarea id="st_cruzamento"></textarea>
+      <label>Ação</label>
+      <textarea id="st_acao"></textarea>
+      <label>Meta</label>
+      <textarea id="st_meta"></textarea>
+    </div>
+
+    <div class="card">
+      <h3>DA – Fraquezas + Ameaças</h3>
+      <label>Cruzamento</label>
+      <textarea id="wt_cruzamento"></textarea>
+      <label>Ação</label>
+      <textarea id="wt_acao"></textarea>
+      <label>Meta</label>
+      <textarea id="wt_meta"></textarea>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;margin-top:35px">
+    <button class="botao" onclick="gerarPDF()">Gerar Relatório PDF</button>
+  </div>
+</section>
+
+<footer>
+© 2026 – FOFA SENAC Barretos · Thiago Simão
+</footer>
+
+<script>
+const dados = {};
+const campos = [
+  "so_cruzamento","so_acao","so_meta",
+  "wo_cruzamento","wo_acao","wo_meta",
+  "st_cruzamento","st_acao","st_meta",
+  "wt_cruzamento","wt_acao","wt_meta"
+];
+
+const titulos = {
+  so: "FO – Forças + Oportunidades",
+  wo: "DO – Fraquezas + Oportunidades",
+  st: "FA – Forças + Ameaças",
+  wt: "DA – Fraquezas + Ameaças"
+};
+
+function eixoAtual(){
+  return document.getElementById("eixo").value;
+}
+
+function salvar(){
+  const eixo = eixoAtual();
+  if(!dados[eixo]) dados[eixo] = {};
+  campos.forEach(c=>{
+    dados[eixo][c] = document.getElementById(c).value;
+  });
+}
+
+function trocarEixo(){
+  salvar();
+  const eixo = eixoAtual();
+  campos.forEach(c=>{
+    document.getElementById(c).value = dados[eixo]?.[c] || "";
+  });
+}
+
+function gerarPDF(){
+  salvar();
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF();
+  let y = 15;
+
+  pdf.setFontSize(18);
+  pdf.setFont(undefined,"bold");
+  pdf.text("RELATÓRIO DE CRUZAMENTOS FOFA",10,y);
+  y+=12;
+
+  pdf.setFontSize(11);
+  pdf.setFont(undefined,"normal");
+  pdf.text(`Área / Curso: ${area.value}`,10,y); y+=6;
+  pdf.text(`Docentes participantes: ${docentes.value}`,10,y); y+=10;
+
+  Object.keys(dados).forEach(eixo=>{
+    pdf.setFontSize(14);
+    pdf.setFont(undefined,"bold");
+    pdf.text(`Eixo Estratégico: ${eixo}`,10,y);
+    y+=8;
+
+    ["so","wo","st","wt"].forEach(sigla=>{
+      pdf.setFontSize(13);
+      pdf.text(titulos[sigla],12,y);
+      y+=7;
+
+      ["cruzamento","acao","meta"].forEach(item=>{
+        const valor = dados[eixo][`${sigla}_${item}`] || "Sem registros";
+        pdf.setFontSize(11);
+        pdf.setFont(undefined,"bold");
+        pdf.text(item.toUpperCase(),14,y);
+        y+=5;
+
+        pdf.setFont(undefined,"normal");
+        const linhas = pdf.splitTextToSize(valor,170);
+        pdf.text(linhas,16,y);
+        y+=linhas.length*5+6;
+
+        if(y>270){pdf.addPage();y=15;}
+      });
+      y+=4;
+    });
+    y+=6;
+  });
+
+  pdf.save("FOFA_Cruzamentos.pdf");
+}
+</script>
+
+</body>
+</html>

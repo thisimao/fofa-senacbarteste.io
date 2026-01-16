@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="fofa-logo.png">
+  <title>FOFA </title>
+
+  <style>
+    *{
+      box-sizing:border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin:0;
+      background:#f4f6f9;
+      color:#333;
+      line-height:1.6;
+    }
+
+    /* HEADER */
+    header {
+      background:#1f4fd8;
+      color:white;
+      padding:30px 20px;
+    }
+
+    .header-content{
+      max-width:1100px;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      gap:30px;
+    }
+
+    .header-content img{
+      max-width:120px;
+      width:100%;
+      height:auto;
+    }
+
+    header h1{
+      margin:0;
+      font-size:32px;
+    }
+
+    header p{
+      margin:8px 0 0;
+      opacity:0.95;
+    }
+
+    /* SECTIONS */
+    section {
+      padding:40px 20px;
+      max-width:1100px;
+      margin:auto;
+    }
+
+    h2 {
+      color:#f26c2a;
+      margin-top:0;
+    }
+
+    /* GRID */
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .card {
+      background:white;
+      padding:20px;
+      border-radius:12px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.08);
+    }
+
+    .card h3{
+      margin-top:0;
+      color:#1f4fd8;
+    }
+
+    /* BOTÃO */
+    .botao-comecar{
+      display:inline-block;
+      margin-top:25px;
+      background:#f26c2a;
+      color:white;
+      padding:14px 36px;
+      border-radius:30px;
+      text-decoration:none;
+      font-size:16px;
+      font-weight:bold;
+      transition:all 0.3s ease;
+      box-shadow:0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    .botao-comecar:hover{
+      background:#d9581e;
+      transform:translateY(-3px);
+      box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    }
+
+    /* FOOTER */
+    footer {
+      background:#1f4fd8;
+      color:white;
+      text-align:center;
+      padding:20px 10px;
+      font-size:14px;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width:768px){
+      header h1{
+        font-size:26px;
+      }
+
+      .header-content{
+        gap:20px;
+      }
+    }
+
+    @media (max-width:600px){
+      .header-content{
+        flex-direction:column;
+        text-align:center;
+      }
+
+      header h1{
+        font-size:24px;
+      }
+
+      section{
+        padding:30px 16px;
+      }
+
+      .botao-comecar{
+        width:100%;
+        text-align:center;
+        padding:14px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-content">
+    <img src="fofa-logo.png" alt="Logo FOFA">
+    <div>
+      <h1>FOFA Educacional</h1>
+      <p>Ferramenta estratégica para diagnóstico, planejamento e tomada de decisão <br> pelos educadores do SENAC Barretos.</p>
+    </div>
+  </div>
+</header>
+
+<section>
+  <h2>Sobre a Análise SWOT</h2>
+  <p>
+    A Análise SWOT (Forças, Fraquezas, Oportunidades e Ameaças) é uma metodologia
+    estratégica utilizada para compreender fatores internos e externos que impactam
+    uma organização.
+  </p>
+</section>
+
+<section>
+  <h2>Matriz SWOT – Análise</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Forças</h3>
+      <p>Diferenciais competitivos, competências internas, qualidade da entrega e expertise da equipe.</p>
+      <p>• O que nos diferencia?</p>
+      <p>• Em quais aspectos nós estamos liderando?</p>
+      <p>• Quais são as novas tecnologias educacionais?</p>
+      <p>• Quais são nossas melhores ofertas?</p>
+    </div>
+    <div class="card">
+      <h3>Fraquezas</h3>
+      <p>Vulnerabilidades internas, falhas de processo ou limitações estruturais.</p>
+      <p>• Onde temos problemas?</p>
+      <p>• Quais são nossas vulnerabilidades?</p>
+      <p>• Quais processos podem ser melhorados?</p>
+    </div>
+    <div class="card">
+      <h3>Oportunidades</h3>
+      <p>Tendências de mercado, avanços tecnológicos e parcerias estratégicas.</p>
+      <p>• O que o mercado quer?</p>
+      <p>• Quem mais podemos alcançar?</p>
+      <p>• Quais são as novas tecnologias no mercado?</p>
+    </div>
+    <div class="card">
+      <h3>Ameaças</h3>
+      <p>Concorrência, mudanças econômicas e riscos externos.</p>
+      <p>• Quais são os obstáculos ao nosso crescimento?</p>
+      <p>• O que causa mudança na demanda?</p>
+      <p>• Quem são nossos novos concorrentes?</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Objetivo da Ferramenta</h2>
+  <p>
+    Transformar análises em ações práticas, apoiando decisões estratégicas
+    e melhoria contínua dos resultados.
+  </p>
+
+  <div style="text-align:center">
+    <a href="fofa-analise.html" class="botao-comecar">Vamos começar</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 – FOFA SENAC Barretos · Desenvolvido por Thiago Simão (TI)</p>
+</footer>
+
+</body>
+</html>
